@@ -1,5 +1,5 @@
-describe('hoge', () => {
-  it('test', () => {
-    expect(1 + 2).toBe(3);
-  })
-})
+describe("hoge", () => {
+	it("test", () => {
+		expect(1 + 2).toBe(3);
+	});
+});

@@ -5,8 +5,15 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
+    "lint:js": "eslint --fix .",
+    "precommit": "lint-staged",
     "test": "jest"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "dependencies": {
     "core-js": "^2.6.5",
@@ -20,9 +27,14 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.9.0",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-vue": "^6.0.1",
+    "husky": "^3.1.0",
     "jest": "^24.9.0",
+    "lint-staged": "^9.4.3",
+    "prettier": "^1.19.1",
     "vue-jest": "^3.0.5",
     "vue-template-compiler": "^2.6.10"
   },
@@ -30,15 +42,28 @@
     "root": true,
     "env": {
       "node": true,
-      "jest": true
+      "jest": true,
+      "es6": true
     },
     "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
+      "plugin:vue/recommended",
+      "plugin:prettier/recommended"
     ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
+    "plugins": [
+      "vue"
+    ],
+    "rules": {
+      "no-debugger": "error",
+      "prettier/prettier": [
+        "error",
+        {
+          "useTabs": true,
+          "semi": true,
+          "singleQuote": false,
+          "jsxBracketSameLine": true,
+          "vueIndentScriptAndStyle": false
+        }
+      ]
     }
   },
   "jest": {
