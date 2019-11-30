@@ -1,8 +1,14 @@
 module.exports = {
-	presets: [["env", { modules: false }], "@vue/app"],
-	env: {
-		test: {
-			presets: [["env", { targets: { node: "current" } }]]
-		}
-	}
-};
+  presets: [
+    '@vue/app'
+  ],
+  plugins: [
+    '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-proposal-private-methods'
+  ],
+  env: {
+    test: {
+      presets: [['env', { targets: { node: 'current' } }]]
+    }
+  }
+}
