@@ -6,6 +6,8 @@
 
 <script>
 import httpRequestFactory from '@/repositories/httpRequestFactory'
+import Hoge from '@/session'
+
 export default {
   name: 'HelloWorld',
   props: {
@@ -15,25 +17,14 @@ export default {
     }
   },
   async mounted() {
-    this.root()
+    await this.root()
   },
   methods: {
     async root() {
-      const res = await this.foo()
-        .catch(err => { console.error(err) })
-      console.log('res', res)
-    },
-    async foo() {
-      return await this.hoge()
-    },
-    async hoge() {
-      const http = httpRequestFactory.create('users')
-      try {
-        const users = await http.fetchUsers()
-        return await http.fetchUser(users[0].id)
-      } catch (e) {
-        throw { stack: e.stack, ...e }
-      }
+      const httpRequest = httpRequestFactory.create('users')
+      const session = new Hoge(httpRequest)
+      const res = await session.exec().catch(err => { console.error(err) })
+      console.log(res)
     }
   }
 }
