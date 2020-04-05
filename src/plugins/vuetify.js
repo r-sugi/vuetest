@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Vuetify, {
-  VCard
+  VDataTable
 } from 'vuetify/lib'
 
 Vue.use(Vuetify, {
   components: {
-    VCard
+    VDataTable
   }
 })
 
